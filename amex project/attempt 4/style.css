@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css?family=Cairo|Raleway");
+
+* {
+  font-size: 23px;
+  font-family: Roboto, sans-serif;
+}
+
+table {
+  margin: 0 0 20rem 0;
+}
+
+.enter {
+  border-color: rgb(117, 117, 117);
+  background-color: rgb(214, 214, 214);
+  margin: 0.5rem 0 0 4rem;
+  border-radius: 90rem;
+  width: 5rem;
+  height: 2rem;
+}
+
+.title {
+  border-radius: 0.75rem 0.75rem 0 0;
+  height: 3rem;
+}
+
+.visual.in {
+  display: flex;
+}
+
+body {
+  display: flex;
+}
+
+div.content {
+  width: 10rem;
+  margin: 0.5rem 0 17.5rem 0.5rem;
+  vertical-align: top;
+}
+
+.text {
+  width: 12.525rem;
+  height: 3rem;
+  border-radius: 0 0 0.75rem 0.75rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+img.iphone {
+  height: 28rem;
+  margin: 0 0 0 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+div.iosNotif {
+  position: relative;
+  font-family: "SF Pro Display", sans-serif;
+  z-index: 2;
+  bottom: 11rem;
+  left: 6rem;
+  /* position: absolute; */
+  margin: 0 0 0 0;
+  /* top: 19rem;
+    left: 35rem; */
+  /* bottom: 2rem; */
+  display: flex;
+  width: 10rem;
+  padding: 14.145px 22.003px 14.145px 14.145px;
+  gap: 12.573px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  align-items: center;
+}
+
+.iosCont {
+  color: rgba(255, 255, 255, 0.955);
+  font-size: 14px;
+  word-wrap: break-word;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  overflow-wrap: break-word;
+}
+
+.iosTitle {
+  align-self: top;
+  color: rgba(255, 255, 255, 0.955);
+  font-size: 15px;
+}
+
+img.iosIcon {
+  width: 1.5rem;
+  margin: 0 0 0 0;
+}
+
+img.s23 {
+  height: 28rem;
+  position: relative;
+  z-index: 1;
+}
+
+div.androidNotif {
+  font-family: Roboto, sans-serif;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  bottom: 17rem;
+  left: 1.5rem;
+  padding: 14px 16px;
+  width: 9rem;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(5px);
+  margin: 0 0 0 0;
+}
+
+.anCont {
+  font-size: 12.5px;
+  margin: 0.15rem 0 0.25rem 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.anTitle {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+div.text2 {
+  margin: 0.15rem 0 0 1.3rem;
+}
+
+img.andIcon {
+  width: 1rem;
+}
+
+.iconText {
+  font-size: 11.5px;
+  top: 1rem;
+  margin: 0 0 0 0.25rem;
+}
+
+div.icnAlign {
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  font-size: 29px;
+  color: #000000;
+  margin: 0 0 0 0;
+}

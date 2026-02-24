@@ -1,0 +1,33 @@
+<body>
+  <header class="answer">Answer</header>
+  <section>
+    <input placeholder="New Value" class="newvalue" />
+    <input placeholder="Multiplier" class="multiplier" />
+    <input placeholder="Old Value" class="oldvalue" />
+  </section>
+  <button
+    class="enter"
+    onclick="reversePercentage(document.querySelector('.multiplier').value, document.querySelector('.newvalue').value, document.querySelector('.oldvalue').value)"
+  >
+    Enter
+  </button>
+  <script>
+    function reversePercentage(multiplier, newValue, oldValue) {
+      if (oldValue == undefined || null || NaN) {
+        oldValue = (newValue / multiplier) * 100;
+        document.querySelector(".answer").value = oldValue;
+      }
+      if (multiplier == undefined || null || NaN) {
+        multiplier = newValue / oldValue;
+        document.querySelector(".answer").value = multiplier;
+      }
+      if (newValue == undefined || null || NaN) {
+        newValue = multiplier * oldValue;
+        document.querySelector(".answer").value = newValue;
+      }
+    }
+    // document.querySelector('.enter').addEventListener(e, function(){
+
+    // })
+  </script>
+</body>

@@ -1,0 +1,19 @@
+#numbers {
+  width: 500px;
+  height: 15px;
+}
+button {
+  font-size: large;
+}
+#Enter {
+  width: 300px;
+}
+#table {
+  width: 300px;
+}
+p {
+  border: 1px;
+}
+.operator {
+  width: 25px;
+}

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>project1</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/p5.js"></script>
+    <script src="js/addons/p5.sound.min.js"></script>
+  </head>
+  <body>
+    <script>
+        let size=5;
+        let gridsize=600/size;
+        const sands=[];
+        let type=0;
+        class Sand{
+            constructor(x, y, type){
+                this.x=x;
+                this.y=y;
+                this.type=type;
+                
+                if (this.type==0){
+                    this.colour=color(sands.length%128+128, 0, 0);
+                }else if (this.type==1){
+                    this.colour=color(0, sands.length%128+128, 0);
+                }else if(this.type==2){
+                    this.colour=color(0, 0, sands.length%128+128);
+                }
+            }
+            draw_sand(){
+                noStroke();
+                fill(this.colour);
+                square(this.x*size, this.y*size, size);
+            }
+            fall() {
+                if (this.type==0){
+                    let falls=true;
+                    let left=true;
+                    let right=true;
+                    let len=sands.length;
+                    if (this.y >= gridsize-1){
+                        falls=false;
+                        left=false;
+                        right=false;
+                    }
+                    for (let i=0; i<len; i++){
+                        if (this.y+1==sands[i].y && this.x==sands[i].x && sands[i]!=this && sands[i].type!=2){
+                            falls=false;
+                            break;
+                        } else if (this.y+1==sands[i].y && this.x==sands[i].x && sands[i]!=this && sands[i].type==2){
+                            sands[i].y-=1;
+                        }
+                    }
+                    if (falls){
+                        this.y+=1;
+                    } else {
+                        for (let i=0; i<len; i++){
+                            if (this.y+1==sands[i].y && this.x-1==sands[i].x && sands[i]!=this && sands[i].type!=2){
+                                left=false;
+                                break;
+                            }else if (this.y+1==sands[i].y && this.x-1==sands[i].x && sands[i]!=this && sands[i].type==2){
+                                sands[i].y-=1;
+                                sands[i].x+=1;
+                            }
+                            
+                        }
+                    }
+                    if (!falls && left && this.x!=0){
+                        this.x-=1;
+                        this.y+=1;
+                    }else if(!falls && !left){
+                        for (let i=0; i<len; i++){
+                            if (this.y+1==sands[i].y && this.x+1==sands[i].x && sands[i]!=this && sands[i].type!=2){
+                                right=false;
+                                break;
+                            }else if (this.y+1==sands[i].y && this.x+1==sands[i].x && sands[i]!=this && sands[i].type==2){
+                                sands[i].y-=1;
+                                sands[i].x-=1;
+                            }
+                        }
+                    }
+                    if (!falls && !left && right && this.x!=gridsize-1){
+                        this.x+=1;
+                        this.y+=1;
+                    }
+                }else if(this.type==2){
+                    let falls=true;
+                    let left=true;
+                    let right=true;
+                    let len=sands.length;
+                    if (this.y >= gridsize-1){
+                        falls=false;
+                        left=false;
+                        right=false;
+                    }
+                    for (let i=0; i<len; i++){
+                        if (this.y+1==sands[i].y && this.x==sands[i].x && sands[i]!=this){
+                            falls=false;
+                            break;
+                        }
+                    }
+                    if (falls){
+                        this.y+=1;
+                    } else {
+                        for (let i=0; i<len; i++){
+                            if (this.y==sands[i].y && this.x-1==sands[i].x && sands[i]!=this){
+                                left=false;
+                                break;
+                            }
+                        }
+                    }
+                    if (!falls && left && this.x!=0){
+                        this.x-=1;
+                    }else if(!falls && !left){
+                        for (let i=0; i<len; i++){
+                            if (this.y==sands[i].y && this.x+1==sands[i].x && sands[i]!=this){
+                                right=false;
+                                break;
+                            }
+                        }
+                    }
+                    if (!falls && !left && right && this.x!=gridsize-1){
+                        this.x+=1;
+                    }
+                }
+            }
+        }
+        function setup(){
+            createCanvas(gridsize*size, gridsize*size);
+        }
+        function mouseDragged(){
+            sands.push(new Sand(floor(mouseX/size), floor(mouseY/size), type));
+            sands.push(new Sand(floor(mouseX/size)-1, floor(mouseY/size), type));
+            sands.push(new Sand(floor(mouseX/size)+1, floor(mouseY/size), type));
+            sands.push(new Sand(floor(mouseX/size), floor(mouseY/size)-1, type));
+            sands.push(new Sand(floor(mouseX/size), floor(mouseY/size)+1, type));
+        }
+        function keyPressed(){
+            type+=1;
+            if (type>=3){
+                type=0;
+            }
+        }
+        function draw(){
+            background(255);
+            for (let i=0; i<sands.length; i++){
+                sands[i].draw_sand();
+                sands[i].fall();
+                }
+        }
+    </script>
+  </body>
+</html>

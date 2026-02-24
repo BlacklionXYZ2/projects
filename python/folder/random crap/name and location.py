@@ -1,0 +1,5 @@
+print("Please enter your name:")
+name = input()
+print("Where do you live?")
+home = input()
+print("Hello " + name +". What is it like in " + home + "?")

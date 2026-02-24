@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <p class="output"></p>
+  <table id="numbers">
+    <button id="1" class="num" onclick="showNumber('1')">1</button>
+    <button id="2" class="num" onclick="showNumber('2')">2</button>
+    <button id="3" class="num" onclick="showNumber('3')">3</button>
+    <button id="4" class="num" onclick="showNumber('4')">4</button>
+    <button id="5" class="num" onclick="showNumber('5')">5</button>
+    <button id="6" class="num" onclick="showNumber('6')">6</button>
+    <button id="7" class="num" onclick="showNumber('7')">7</button>
+    <button id="8" class="num" onclick="showNumber('8')">8</button>
+    <button id="9" class="num" onclick="showNumber('9')">9</button>
+    <button id="0" class="num" onclick="showNumber('0')">0</button>
+    <td>
+      <button id="+" class="operator" onclick="add()">+</button>
+      <button id="-" class="operator" onclick="subtract()">-</button>
+      <button id="x" class="operator" onclick="multiply()">x</button>
+      <button id="/" class="operator" onclick="divide()">/</button>
+    </td>
+    <table id="table">
+      <button id="Enter" onclick="enter()">Enter</button>
+    </table>
+  </table>
+  <script>
+    let number1 = [];
+    let number2 = [0];
+    let number3 = [];
+    let reverse = [];
+    let div10;
+    let operator;
+    let total = 0;
+    console.log(total);
+    // totDiv10 = function(){
+    //     div10 = true;
+    //     for(let i; i == 0 && div10 == true; i++){
+    //         total = Number(total);
+    //         total = total / 10;
+    //         total = String(total);
+    //     }
+    //     i == 1;
+    // }
+    //onclick="totDiv10()"
+    showNumber = function (num) {
+      number1 = [String(num)];
+      for (let i = 0; i < number1.length; i++) {
+        reverse = number1[number1.length];
+        number1 = reverse;
+        loadNum();
+      }
+    };
+    loadNum = function () {
+      for (let i = 0; i < number1.length; i++) {
+        total = number1[i] + total;
+        //document.querySelector(".output").textContent = total;
+        console.log(Number(total));
+        console.log(typeof total);
+        return total;
+      }
+    };
+    add = function () {
+      number2 = total;
+      total = 0;
+      //document.querySelector(".output").textContent = number2 + " + ";
+      console.log(Number(number2));
+      operator = "add";
+      return operator && number2 && number1;
+    };
+    subtract = function () {
+      number2 = total;
+      total = 0;
+      console.log(Number(number2));
+      operator = "subtract";
+      return operator && number2 && number1;
+    };
+    multiply = function () {
+      number2 = total;
+      total = 0;
+      console.log(Number(number2));
+      operator = "multiply";
+      return operator && number2 && number1;
+    };
+    divide = function () {
+      number2 = total;
+      total = 0;
+      console.log(Number(number2));
+      operator = "divide";
+      return operator && number2 && number1;
+    };
+    enter = function () {
+      if ((operator = "add")) {
+        number3 = (Number(total) + Number(number2)) / 10;
+        console.log(number2);
+        console.log(total);
+        console.log((Number(total) + Number(number2)) / 10);
+        console.log(typeof ((Number(total) + Number(number2)) / 10));
+        document.querySelector(".output").textContent = number3;
+        console.log(document.querySelector(".output").textContent);
+        total = 0;
+        number2 = 0;
+      }
+      if ((operator = "subtract")) {
+        number3 = (Number(total) - Number(number2)) / 10;
+        document.querySelector(".output").textContent = number3;
+      }
+      if ((operator = "multiply")) {
+        number3 = (Number(total) * Number(number2)) / 10;
+        document.querySelector(".output").textContent = number3;
+      }
+      if ((operator = "divide")) {
+        number3 = Number(total) / Number(number2) / 10;
+        document.querySelector(".output").textContent = number3;
+      }
+    };
+  </script>
+</body>

@@ -1,0 +1,26 @@
+started 8.3.24
+
+12.4.24:
+V1 complete
+
+10.5.24:
+rare loot added
+item checking added
+miscellaneous improvements
+
+13.5.24:
+added golem
+added enemy checking and size and description variables to enemies
+fixed item checking to show stats not just numbers
+end game option added
+directions updated to not repeat
+added healing potion
+added heal() function
+added potion item type with flexibility for negative potions and other potion types
+added flexibility to item checking for specific item types
+
+20.5.24
+reworked inventory check into a function
+
+4.7.24
+changed strings to use formatted strings

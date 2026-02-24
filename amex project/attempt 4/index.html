@@ -1,0 +1,63 @@
+<head>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <table>
+    <tr>
+      <td class="td1">
+        <div class="content">
+          <input class="title" name="Title" placeholder="Title" type="text" />
+          <input class="text" name="text" placeholder="Contents" type="text" />
+          <button class="enter" type="button">Enter</button>
+        </div>
+      </td>
+
+      <td class="td2">
+        <div class="visual in">
+          <div class="ios">
+            <img class="iphone" src="iphone2.png" alt="" />
+            <div class="iosNotif">
+              <div class="iosIcon">
+                <img class="iosIcon" src="amex_logo_ios.png" alt="" />
+              </div>
+              <div class="text1">
+                <h2 class="iosTitle"></h2>
+                <p class="iosCont"></p>
+              </div>
+            </div>
+          </div>
+          <div class="android">
+            <img class="s23" src="android3.png" alt="" />
+            <div class="androidNotif">
+              <div class="andIcon">
+                <div class="icnAlign">
+                  <img class="andIcon" src="amex_logo_android.png" alt="" />
+                  <p class="iconText">American Express</p>
+                </div>
+              </div>
+              <div class="text2">
+                <h2 class="anTitle"></h2>
+                <p class="anCont"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <script>
+    document.querySelector(".enter").addEventListener("click", function () {
+      document.querySelector(".iosCont").textContent =
+        document.querySelector(".text").value;
+
+      document.querySelector(".anCont").textContent =
+        document.querySelector(".text").value;
+
+      document.querySelector(".iosTitle").textContent =
+        document.querySelector(".title").value;
+
+      document.querySelector(".anTitle").textContent =
+        document.querySelector(".title").value;
+    });
+  </script>
+</body>

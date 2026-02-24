@@ -1,0 +1,16 @@
+import tkinter as tk
+
+root = tk.Tk()
+
+def create_child_win():
+    top = tk.Toplevel(root)
+    tk.Label(top,text='In todays world, discussions about identity, including sexual orientation, are becoming increasingly common. Oscar, a classmate of mine, is often described as “different” by some of our peers. This essay explores why it is essential to understand and support individuals like Oscar as they navigate their identities, particularly his being gay. First, it is important to understand what being gay means. Sexual orientation refers to who someone is attracted to, emotionally and physically. For Oscar, he identifies as gay, meaning he is attracted to other boys. This realization is not a choice but rather a fundamental part of who he is. It’s crucial for everyone, especially young people, to understand that sexual orientation is an inherent aspect of a person’s identity, much like their race or ethnicity. Oscars journey to understanding his sexuality has been complex. Like many teenagers, he faced confusion and pressure to conform to societal norms. Growing up in an environment where traditional views on relationships prevail, Oscar struggled with his feelings. It wasn’t until he reached high school that he began to embrace his identity. This process of self-acceptance is significant; it requires courage to be true to oneself in a world that can sometimes be unkind. The support of friends and family plays a critical role in this journey. Oscar has been fortunate to have a few close friends who accept him for who he is. Their encouragement has helped him gain confidence in expressing his identity. However, it is essential to recognize that not all individuals receive the same level of support. Bullying and discrimination can create an atmosphere of fear and isolation for LGBTQ+ youth. This is why fostering an inclusive environment is vital. Acceptance can empower individuals like Oscar to thrive and be their authentic selves. Moreover, Oscars experience highlights the importance of representation. In media and literature, positive portrayals of gay characters can help normalize diverse sexual orientations. When Oscar sees characters like himself in stories, it reassures him that he is not alone. Representation matters because it promotes understanding and acceptance among all people, regardless of their sexual orientation. In conclusion, Oscars identity as a gay individual is not just a label; it is part of a larger narrative about self-discovery, acceptance, and the need for understanding in our society. Supporting Oscar and others like him is essential in creating a world where everyone can feel safe and proud of who they are. By embracing diversity, we foster a more inclusive and compassionate community, ensuring that all individuals, regardless of their sexual orientation, can live authentically and without fear.').grid(row=0)
+
+root.geometry('400x400')
+root.minsize(400,400)
+root.maxsize(1080,180)
+
+tk.Label(root,text='oscar is gay').grid(row=0)
+tk.Button(root,text='find out more',command=create_child_win)
+
+root.mainloop()

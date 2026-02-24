@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactable Start Button</title>
+    <style>
+      #text-window {
+        width: 600px;
+        height: 400px;
+        border: 1px solid black;
+        overflow: auto;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="input-box" placeholder="Type your message here" />
+    <button id="send-button">Send</button>
+    <div id="text-window"></div>
+
+    <script>
+      // Get references to the input box, send button, and text window elements
+      var inputBox = document.getElementById("input-box");
+      var sendButton = document.getElementById("send-button");
+      var textWindow = document.getElementById("text-window");
+
+      // Add event listener to the send button
+      sendButton.addEventListener("click", function () {
+        // Get the value from the input box
+        var message = inputBox.value;
+
+        // Append the message to the text window
+        textWindow.innerHTML += "You: " + message + "<br>";
+
+        // Scroll to the bottom of the text window
+        textWindow.scrollTop = textWindow.scrollHeight;
+
+        // Clear the input box
+        inputBox.value = "";
+
+        // Process the message and generate a response
+        var response = processMessage(message);
+
+        // Append the response to the text window
+        textWindow.innerHTML += "Bot: " + response + "<br>";
+
+        // Scroll to the bottom of the text window
+        textWindow.scrollTop = textWindow.scrollHeight;
+      });
+
+      // Function to process the user's message and generate a response
+      function processMessage(message) {
+        // Replace this with your own logic to generate a response based on the user's message
+        let randomNumber = Math.trunc(Math.random() * 6) + 1;
+        let playerGuess =
+          (textWindow.innerHTML = `A dice will be rolled. What number will it be?`);
+        let guesses = 1;
+
+        while (playerGuess != randomNumber && guesses <= 3) {
+          textWindow.innerHTML = `Wrong. Try again.`;
+          guesses++;
+          if (guesses <= 3) {
+            playerGuess = textWindow.innerHTML = `wrong, what is the number?`;
+          }
+        }
+
+        if (playerGuess == randomNumber) {
+          textWindow.innerHTML = `Well done! The number was ${randomNumber}!`;
+        }
+
+        while (playerGuess != randomNumber && guesses == 3) {
+          textWindow.innerHTML = `Unfortunate. The number was ${randomNumber}.`;
+          textWindow.innerHTML = `Refresh the page to try again!`;
+          guesses++;
+        }
+      }
+    </script>
+  </body>
+</html>

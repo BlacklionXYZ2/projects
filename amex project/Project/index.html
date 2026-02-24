@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notification Model</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <h2 class="mainHeading">Notification Preview</h2>
+    <table>
+      <tr>
+         <td class="inputs">
+          <form>
+            <input
+              id="adtitle"
+              class="Content"
+              type="text"
+              placeholder="Notification Title"
+            ></input>
+            <select name="prefix" id="prefix" class="Content select">
+              <option value="A">A</option>
+              <option value="The">The</option>
+              <option value="">N/A</option>
+            </select>
+            <input
+              id="amount"
+              class="Content"
+              type="text"
+              placeholder="Amount"
+            ></input>
+            <select name="type" id="type"
+            class="Content select">
+              <option value="transaction">transaction</option>
+              <option value="purchase">purchase</option>
+              <option value="payment">payment</option>
+              <option value="credit">credit</option>
+              <option value="">N/A</option>
+            </select>
+            <input
+              id="action"
+              class="Content"
+              type="text"
+              placeholder="Action"
+            ></input>
+            <select name="object" id="object"
+            class="Content select">
+              <option value="for">for</option>
+              <option value="from">from</option>
+              <option value="at">at</option>
+              <option value="by">by</option>
+              <option value="">N/A</option>
+            </select>
+            <input
+              id="entity"
+              class="Content"
+              type="text"
+              placeholder="Location"
+            ></input>
+            <div>
+              <input
+                id="date"
+                class="Content"
+                type="text"
+                placeholder="Date"
+              ></input>
+              <!-- <button class="dateToggle" type="button">O</button> -->
+            </div>
+             <input
+              id="reason"
+              class="Content"
+              type="text"
+              placeholder="Reason"
+            ></input>
+            <select name="account type" id="accType" class="Content select">
+              <option value="account">account</option>
+              <option value="card account">card account</option>
+            </select>
+            <input
+              id="account"
+              class="Content"
+              type="text"
+              placeholder="Account"
+            ></input>
+            <input
+              id="other"
+              class="Content"
+              type="text"
+              placeholder="Extra info"
+            ></input>
+            <button class="enter" type="button">Enter</button>
+            <br />
+            <!-- <textarea class="notification" placeholder="Amount"></textarea> -->
+          </form>
+        </td> -->
+        <!-- <button type="button" class="darkMode">off</button> -->
+        <td class="visual out">
+          <div class="visual in">
+            <div class="ios">
+              <img class="iphone" src="iphone.png" alt="">
+              <div class="iosNotif">
+                <div class="iosIcon">
+                  <img class="iosIcon" src="amex_logo_ios.png" alt="">
+                </div>
+                <div class="text1">
+                  <h2 id="adtitleLive" class="iosTitle"></h2>
+                  <p id="AdContentLive" class="iosCont"></p>
+                </div>
+              </div>
+            </div>
+            <div class="android">
+              <img class="s23" src="android.png" alt="">
+              <div class="androidNotif">
+                <div class="andIcon">
+                  <div class="icnAlign">
+                    <img class="andIcon" src="amex_logo_android.png" alt="">
+                    <p class="iconText">American Express</p>
+                  </div>
+                </div>
+                <div class="text2">
+                  <h2 id="adtitleLive2" class="anTitle"></h2>
+                  <p id="AdContentLive2" class="anCont"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <!-- partial -->
+    <script src="script.js"></script>
+  </body>
+</html>

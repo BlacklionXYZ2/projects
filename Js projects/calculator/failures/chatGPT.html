@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <p class="output"></p>
+    <table id="numbers">
+      <button id="1" class="num" onclick="showNumber(1)">1</button>
+      <!-- Add other number buttons similarly -->
+      <button id="+" class="operator" onclick="setOperator('add')">+</button>
+      <!-- Add other operator buttons similarly -->
+      <button id="Enter" onclick="calculate()">Enter</button>
+    </table>
+    <script>
+      let number1 = 0;
+      let number2 = 0;
+      let operator;
+      let total = 0;
+
+      function showNumber(num) {
+        number1 = Number(num);
+        document.querySelector(".output").textContent = number1;
+        console.log(number1);
+      }
+
+      function setOperator(op) {
+        operator = op;
+        number2 = total;
+        total = 0;
+      }
+
+      function calculate() {
+        if (operator === "add") {
+          total = (number1 + number2) / 10;
+        } else if (operator === "subtract") {
+          total = (number1 - number2) / 10;
+        } else if (operator === "multiply") {
+          total = (number1 * number2) / 10;
+        } else if (operator === "divide") {
+          total = number1 / number2 / 10;
+        }
+        document.querySelector(".output").textContent = total;
+        console.log(total);
+      }
+    </script>
+  </body>
+</html>
