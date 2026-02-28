@@ -2,7 +2,7 @@ import pygame, math
 
 pygame.init()
 
-screenWidth, screenHeight = 640, 360        
+screenWidth, screenHeight = 2 * 640, 2 * 360        
 displaySurface = pygame.display.set_mode((screenWidth, screenHeight))
 laserList = []
 
@@ -57,6 +57,12 @@ while run:
         rect_x -= rectSpeed * dt
     elif keys[pygame.K_RIGHT]:
         rect_x += rectSpeed * dt
+
+    if keys[pygame.K_RSHIFT ]:
+        rectSpeed += 0.1 * dt
+    
+    if keys[pygame.K_RCTRL]:
+        rectSpeed -= 0.1 * dt
 
     #keep rectangle on screen
     if rect_y < 0:
