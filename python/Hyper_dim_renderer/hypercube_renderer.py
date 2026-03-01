@@ -52,7 +52,7 @@ def create_master(dim, angle, device):
 pygame.init()
 
 
-dim = 7
+dim = 20
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Running on: {device}")
@@ -61,7 +61,7 @@ print(f"Running on: {device}")
 screen_width, screen_height = 800, 600
 screen_center = torch.tensor([screen_width / 2, screen_height / 2]).to(device)
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.OPENGL | pygame.DOUBLEBUF)
-pygame.display.set_caption(f"{dim}D Hardware-Accelerated Engine")
+pygame.display.set_caption(f"{dim}D Hypercube renderer")
 clock = pygame.time.Clock()
 
 ctx = moderngl.create_context()
@@ -98,7 +98,7 @@ ibo = ctx.buffer(edge_data)
 vbo = ctx.buffer(reserve=len(base_points) * 2 * 4, dynamic=True)
 vao = ctx.vertex_array(shader_program, [(vbo, '2f', 'in_position')], index_buffer=ibo)
 
-print(f"{len(base_points)} Vertices, {len(edges)} Edges.")
+print(f"{len(base_points)} Vertices, {len(edges)} Edges, {dim * (dim - 1)} Matrices")
 
 while True:
     for event in pygame.event.get():

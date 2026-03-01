@@ -1,4 +1,5 @@
-from math import sin, cos, pi
+from math import sin, cos, sqrt
+import pygame
 
 def find_points(dim):
     n_points = (2 ** dim)
@@ -63,12 +64,77 @@ def create_matrices(dim):
             current.cos2 = [y, y]
             rot_mats.append(current)
     return rot_mats
-        
-        
+
+def project_to_2d(points):
+    projected = [point[:] for point in points]
+    camera_distance = sqrt(len(points[0])) + 1.0
+    while len(projected[0]) > 2:
+        for i in range(len(projected)):
+            point = projected[i]
+            z = point[-1]
+            scale = camera_distance / (camera_distance - z) if (camera_distance - z) != 0 else 1.0
+            projected[i] = [val * scale for val in point[:-1]]
+
+        max_val = max(abs(val) for p in projected for val in p)
+        if max_val > 0:
+            for i in range(len(projected)):
+                projected[i] = [val / max_val for val in projected[i]]
+    return projected
+
+def matmul(A, B):
+    rows_A = len(A)
+    cols_A = len(A[0])
+    cols_B = len(B[0])
+    result = [[0.0 for _ in range(cols_B)] for _ in range(rows_A)]
+    for i in range(rows_A):
+        for j in range(cols_B):
+            for k in range(cols_A):
+                result[i][j] += A[i][k] * B[k][j]
+    return result
+
+pygame.init()
+screen_width, screen_height = 800, 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Python Hypercube Renderer")
+clock = pygame.time.Clock()
+
 dim = 10
+scale = 200
+        
 points = find_points(dim)
 edges = find_edges(points)
 mats = create_matrices(dim)
-for x in mats:
-    x.rotate(pi / 2)
-    x.print()
+angle = 0
+
+print(f"{len(points)} Vertices, {len(edges)} Edges.")
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+
+    screen.fill((0, 0, 0))
+
+    for idx, mat in enumerate(mats):
+        mat.rotate(angle * (1.0 + idx * 0.1))
+
+    master_mat = mats[0].mat
+    for i in range(1, len(mats)):
+        master_mat = matmul(master_mat, mats[i].mat)
+
+    rot_points = matmul(points, master_mat)
+    proj_points = project_to_2d(rot_points)
+
+    screen_points = []
+    for p in proj_points:
+        x = int(p[0] * scale + screen_width / 2)
+        y = int(p[1] * scale + screen_height / 2)
+        screen_points.append((x, y))
+    for edge in edges:
+        pygame.draw.line(screen, (200, 200, 200), screen_points[edge[0]], screen_points[edge[1]], 1)
+    for p in screen_points:
+        pygame.draw.circle(screen, (0, 255, 255), p, 4)
+
+    pygame.display.flip()
+    clock.tick(60)
+    angle += 0.05 / dim**1.5
