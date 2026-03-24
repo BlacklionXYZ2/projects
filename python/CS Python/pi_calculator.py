@@ -1,7 +1,7 @@
 import pygame, time, threading
 from decimal import Decimal, getcontext
 
-thread_speed = 10
+thread_speed = 500
 screen_speed = 240
 
 
@@ -58,7 +58,7 @@ text_color = (0, 255, 100)
 pause_color = (255, 50, 50)
 header_bg_color = (20, 20, 20)
 
-MAX_LIMIT = 1000
+MAX_LIMIT = 10000
 pi_state = ChudnovskyState(MAX_LIMIT)
 
 clock = pygame.time.Clock()

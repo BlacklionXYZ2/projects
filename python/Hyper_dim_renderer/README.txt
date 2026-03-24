@@ -1,1 +1,0 @@
-You will need pytorch, pygame, moderngl and numpy installed to use this (and a cuda (or equivalent) capable graphics card)
