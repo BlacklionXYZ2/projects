@@ -1,7 +1,7 @@
 import pygame, time, threading
 from decimal import Decimal, getcontext
 
-thread_speed = 10
+thread_speed = 500
 screen_speed = 240
 
 
