@@ -52,7 +52,7 @@ def create_master(dim, angle, device):
 pygame.init()
 
 
-dim = 20
+dim = 5
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Running on: {device}")

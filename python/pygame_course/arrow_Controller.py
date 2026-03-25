@@ -59,10 +59,13 @@ while run:
         rect_x += rectSpeed * dt
 
     if keys[pygame.K_RSHIFT ]:
-        rectSpeed += 0.1 * dt
+        rectSpeed += 1.0 * dt
     
     if keys[pygame.K_RCTRL]:
-        rectSpeed -= 0.1 * dt
+        rectSpeed -= 0.2 * dt
+
+    if rectSpeed < 0:
+        rectSpeed = 0
 
     #keep rectangle on screen
     if rect_y < 0:
