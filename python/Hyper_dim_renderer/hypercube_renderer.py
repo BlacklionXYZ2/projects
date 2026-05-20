@@ -1,6 +1,18 @@
 from math import sin, cos, sqrt
 import torch, pygame, moderngl, numpy
 
+pygame.init()
+dim = 4
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"Running on: {device}")
+
+screen_width, screen_height = 800, 600
+screen_center = torch.tensor([screen_width / 2, screen_height / 2]).to(device)
+screen = pygame.display.set_mode((screen_width, screen_height), pygame.OPENGL | pygame.DOUBLEBUF)
+pygame.display.set_caption(f"{dim}D Hypercube renderer")
+clock = pygame.time.Clock()
+
 def find_edges(points):
     diff_pos = points.unsqueeze(1) != points.unsqueeze(0)
     diff_counts = diff_pos.sum(dim = 2)
@@ -18,7 +30,19 @@ def fast_find_edges(dim):
                 edges.append((x, y))
     return edges
 
-def project_to_2d(points, camera_distance=None):
+def calc_viewport_scale(screen_size = min(screen_height, screen_width), padding = 0.8):
+    r = sqrt(dim)  
+    cam_dist = r + 10
+    if cam_dist <= r:
+        raise ValueError(f'Camera distance ({cam_dist}) must be greater than radius ({r:.2f})')
+    num_projections = dim - 2
+    max_scale = (cam_dist / (cam_dist - r)) ** num_projections
+    max_2d_coord = r * max_scale
+    scale = (screen_size / 2) / max_2d_coord
+    return scale * padding
+viewport_scale = calc_viewport_scale()
+
+def project_to_2d(points, camera_distance = None):
     projected = points.clone()
 
     if camera_distance is None:
@@ -28,8 +52,7 @@ def project_to_2d(points, camera_distance=None):
         z = projected[:, -1:] 
         scale = camera_distance / (camera_distance - z)
         projected = projected[:, :-1] * scale
-        max_val = torch.max(torch.abs(projected))
-        projected /= max_val
+    projected /= viewport_scale
     return projected
 
 def create_master(dim, angle, device):
@@ -48,21 +71,6 @@ def create_master(dim, angle, device):
     return torch.linalg.multi_dot(rot_mats).to(device)
         
 
-
-pygame.init()
-
-
-dim = 20
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print(f"Running on: {device}")
-
-
-screen_width, screen_height = 800, 600
-screen_center = torch.tensor([screen_width / 2, screen_height / 2]).to(device)
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.OPENGL | pygame.DOUBLEBUF)
-pygame.display.set_caption(f"{dim}D Hypercube renderer")
-clock = pygame.time.Clock()
 
 ctx = moderngl.create_context()
 
@@ -93,10 +101,10 @@ angle = 0
 angle_diff = 0.05 / dim**1.5
 master_mat = create_master(dim, angle, device)
 
-edge_data = numpy.array(edges, dtype='i4').tobytes()
+edge_data = numpy.array(edges, dtype = 'i4').tobytes()
 ibo = ctx.buffer(edge_data)
-vbo = ctx.buffer(reserve=len(base_points) * 2 * 4, dynamic=True)
-vao = ctx.vertex_array(shader_program, [(vbo, '2f', 'in_position')], index_buffer=ibo)
+vbo = ctx.buffer(reserve = len(base_points) * 2 * 4, dynamic = True)
+vao = ctx.vertex_array(shader_program, [(vbo, '2f', 'in_position')], index_buffer = ibo)
 
 print(f"{len(base_points)} Vertices, {len(edges)} Edges, {dim * (dim - 1)} Matrices")
 

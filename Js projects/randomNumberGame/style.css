@@ -19,6 +19,22 @@ html {
 }
 
 /* LAYOUT */
+
+.home{
+  font-family: initial;
+  position: absolute;
+  left: 1.25rem;
+  top: 0.25rem;
+}
+
+.home a{
+  color: chartreuse;
+}
+
+.home:hover a{
+  color: white;
+}
+
 header {
   position: relative;
   height: 35vh;
