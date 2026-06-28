@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <style>
+            body{
+                scroll-behavior: smooth;
+            }
+            .nav{
+                position: absolute;
+            }
+            .form{
+                align-items: center;
+            }
+            .form textarea{
+                resize: none;
+            }
+            .form button{
+                position: relative;
+            }
+            #send_notif{
+                color: rgb(0, 179, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>(Insert tech company name)</h1>
+        <div class="nav">
+            <a href="#prod1">products</a>
+            <a href="#name">form</a>
+        </div>
+        <div class="description">
+            <p>This is a description of the cool stuff that this company does</p>
+        </div>
+        <div class="products">
+            <ol>
+                <li id="prod1">product 1</li>
+                <li id="prod2">product 2</li>
+                <li id="prod3">product 3</li>
+            </ol>
+        </div>
+        <div class="form">
+            <textarea placeholder="Name" id="name"></textarea><br>
+            <textarea placeholder="Email" id="email"></textarea><br>
+            <textarea placeholder="Content" id="content"></textarea><br>
+            <button onclick="send()">Send</button>
+            <p id="send_notif"></p>
+        </div>
+        <script>
+            function send(){
+                document.querySelector('#send_notif').textContent = 'Email sent'
+                document.querySelector('#name').textContent = ''
+                document.querySelector('#email').textContent = ''
+                document.querySelector('#content').textContent = ''
+            }
+        </script>
+    </body>
+</html>

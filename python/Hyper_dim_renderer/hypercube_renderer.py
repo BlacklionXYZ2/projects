@@ -2,13 +2,16 @@ from math import sin, cos, sqrt
 import torch, pygame, moderngl, numpy
 
 pygame.init()
-dim = 4
+dim = 5
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Running on: {device}")
 
 screen_width, screen_height = 800, 600
 screen_center = torch.tensor([screen_width / 2, screen_height / 2]).to(device)
+pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
+pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 3)
+pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE)
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.OPENGL | pygame.DOUBLEBUF)
 pygame.display.set_caption(f"{dim}D Hypercube renderer")
 clock = pygame.time.Clock()
@@ -30,17 +33,17 @@ def fast_find_edges(dim):
                 edges.append((x, y))
     return edges
 
-def calc_viewport_scale(screen_size = min(screen_height, screen_width), padding = 0.8):
+def calc_viewport_scale(screen_size = min(screen_height, screen_width), padding = 1.0):
     r = sqrt(dim)  
     cam_dist = r + 10
     if cam_dist <= r:
         raise ValueError(f'Camera distance ({cam_dist}) must be greater than radius ({r:.2f})')
     num_projections = dim - 2
-    max_scale = (cam_dist / (cam_dist - r)) ** num_projections
+    max_scale = (cam_dist / (cam_dist - r)) ** sqrt(num_projections)
     max_2d_coord = r * max_scale
     scale = (screen_size / 2) / max_2d_coord
     return scale * padding
-viewport_scale = calc_viewport_scale()
+viewport_scale = calc_viewport_scale() / 15
 
 def project_to_2d(points, camera_distance = None):
     projected = points.clone()

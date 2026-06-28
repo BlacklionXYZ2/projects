@@ -98,7 +98,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Python Hypercube Renderer")
 clock = pygame.time.Clock()
 
-dim = 10
+dim = 11
 scale = 200
         
 points = find_points(dim)
